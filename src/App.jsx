@@ -1,7 +1,14 @@
+import "./App.css";
+import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
     <>
-      <h1>Developer's Vault</h1>
+      <div className="main min-h-screen bg-black text-white">
+        <Navbar />
+        <Hero />
+      </div>
     </>
   );
 }
