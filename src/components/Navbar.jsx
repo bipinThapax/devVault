@@ -3,7 +3,7 @@ import { IoIosSunny } from "react-icons/io";
 
 const Navbar = () => {
   return (
-    <nav className="p-10 py-8  z-10  flex justify-between items-center font-semibold box-border bg-[#28272749] sticky top-0">
+    <nav className="p-10 py-8  z-30 flex justify-between items-center font-semibold box-border bg-[#28272749] sticky top-0">
       <div className="logo flex gap-2 items-center">
         <div className="logoImg text-[#1c4ecd]">
           <FaTools />
@@ -31,15 +31,12 @@ const Navbar = () => {
           <IoIosSunny className="text-2xl hover:text-[#c1bbbb] transition-colors duration-300  " />
         </div>
         <div className="login">
-          <button
-            className=" outline-none   cursor-pointer   active:scale-95 border-2 py-3 px-4  rounded-lg transition-all duration-500 ease-out
-               hover:bg-white hover:text-black hover:border-transparent btnBoxShadow"
-          >
+          <button className=" px-6 py-2 rounded-xl text-sm font-medium cursor-pointer transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5)]">
             Log In
           </button>
         </div>
         <div className="singup">
-          <button className="bg-[#1c44d5] btnBoxShadow hover:bg-indigo-700 px-4 py-3  rounded-lg cursor-pointer transition-all duration-400 ease-out active:scale-95">
+          <button className="bg-[#540bc8] px-6 py-2 rounded-xl text-sm font-medium cursor-pointer transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5)]">
             Get Started
           </button>
         </div>
