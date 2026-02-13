@@ -5,3 +5,7 @@
 .btnBoxShadow:hover {
   box-shadow: 0px 1px 10px 0px #504f4f;
 }
+
+.boxShadow {
+  box-shadow: 1px 2px 6px 0px #504f4f;
+}
