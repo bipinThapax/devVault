@@ -1,17 +1,32 @@
 import { IoIosArrowForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
 import { FaRegPlayCircle } from "react-icons/fa";
+import heroDashboard from "../assets/DevVaultDashboard.png";
 
 const Hero = () => {
   return (
-    <section className="relative z-10 min-h-[75vh] overflow-hidden bg-[#060608] flex items-center justify-center">
+    <section className="relative z-10 min-h-fit overflow-hidden bg-[#060608] flex items-center justify-center">
       {/* ── Orb 1 — top center large bloom ── */}
       <div className="absolute z-2 -top-40 left-1/2 -translate-x-1/2 w-130 h-130 rounded-full bg-[radial-gradient(circle,rgba(109,40,217,0.38)_0%,transparent_70%)] blur-[80px] animate-pulse" />
 
-      {/* ── Top edge glow beam ──
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-4 w-150 h-px bg-[linear-gradient(90deg,transparent_0%,rgba(168,85,247,0.6)_30%,rgba(216,180,254,0.95)_50%,rgba(168,85,247,0.6)_70%,transparent_100%)] shadow-[0_0_18px_2px_rgba(168,85,247,0.35)]" /> */}
+      {/* ── Top edge glow beam ── */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-4 w-150 h-px bg-[linear-gradient(90deg,transparent_0%,rgba(168,85,247,0.6)_30%,rgba(216,180,254,0.95)_50%,rgba(168,85,247,0.6)_70%,transparent_100%)] shadow-[0_0_18px_2px_rgba(168,85,247,0.35)]" />
 
-      <div className="absolute top-20  flex flex-col  items-center gap-6 p-8 text-center">
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 z-3 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          maskImage:
+            "radial-gradient(ellipse 75% 55% at 50% 0%, black 20%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 75% 55% at 50% 0%, black 20%, transparent 75%)",
+        }}
+      />
+
+      <div className="heroText mt-20 relative z-20  flex flex-col  items-center gap-6 p-8 text-center">
         <div className="flex items-center gap-2 py-1 px-3 text-xs bg-[rgba(109,40,217,0.22)] border border-[rgba(168,85,247,0.3)] rounded-full text-purple-200 cursor-pointer backdrop-blur-sm hover:bg-[rgba(109,40,217,0.35)] hover:border-[rgba(168,85,247,0.5)] transition-all duration-200">
           <span className="text-green-400 text-[8px]">
             <FaCircle />
@@ -31,7 +46,7 @@ const Hero = () => {
         </h1>
 
         {/* Subheading */}
-        <p className="w-[52%] text-center text-xl text-purple-300/60 leading-relaxed">
+        <p className="w-[70%] text-center text-lg text-purple-300/60 leading-relaxed">
           Your personal developer dashboard to manage projects, track progress,
           and showcase your work with elegance and speed.
         </p>
@@ -45,6 +60,14 @@ const Hero = () => {
             <FaRegPlayCircle />
             View Demo
           </button>
+        </div>
+
+        <div className="heroImage relative mt-10">
+          <img
+            src={heroDashboard}
+            alt="hero dashboard preview"
+            className="w-180  bg-contain rounded-md "
+          />
         </div>
       </div>
     </section>
