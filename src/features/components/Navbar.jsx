@@ -1,7 +1,14 @@
 import { FaTools } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
+import { Link } from "react-router-dom";
 
-const navItems = ["Home", "Features", "Pricing", "Changelog", "Docs"];
+const navObj = [
+  { name: "Home", to: "/" },
+  { name: "Features", to: "/login" },
+  { name: "Pricing", to: "/about" },
+  { name: "Changelog", to: "/signup" },
+  { name: "Docs", to: "/" },
+];
 
 const navLinkClass =
   "relative hover:text-white transition-all duration-500 ease-out " +
@@ -20,26 +27,26 @@ const Navbar = () => {
           <h1>DevVault</h1>
         </div>
       </div>
+
       <ul className="list-none ml-35 flex gap-10 items-center text-gray-500">
-        {navItems.map((item) => (
-          <li key={item} className={navLinkClass}>
-            {item}
+        {navObj.map((item) => (
+          <li>
+            <Link to={item.to} key={item.name} className={navLinkClass}>
+              {item.name}
+            </Link>
           </li>
         ))}
       </ul>
+
       <div className="extra flex justify-center items-center gap-3">
         <div className="themetoggle cursor-pointer">
           <IoIosSunny className="text-2xl hover:text-[#c1bbbb] transition-colors duration-300" />
         </div>
-        <div className="login">
-          <button className="px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5)]">
-            Log In
-          </button>
+        <div className="login px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5)]">
+          <Link to={"/login"}>Login</Link>
         </div>
-        <div className="singup">
-          <button className="bg-[#540bc8] px-4 py-2 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5)]">
-            Get Started
-          </button>
+        <div className="singup bg-[#540bc8] px-3 py-2 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5)]">
+          <Link to={"/signup"}>Get Started</Link>
         </div>
       </div>
     </nav>

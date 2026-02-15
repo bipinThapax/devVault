@@ -1,7 +1,7 @@
 import { IoIosArrowForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
 import { FaRegPlayCircle } from "react-icons/fa";
-import heroDashboard from "../assets/DevVaultDashboard.png";
+import heroDashboard from "../../assets/DevVaultDashboard.png";
 
 const Hero = () => {
   return (
@@ -10,7 +10,7 @@ const Hero = () => {
       <div className="absolute z-2 -top-40 left-1/2 -translate-x-1/2 w-130 h-130 rounded-full bg-[radial-gradient(circle,rgba(109,40,217,0.38)_0%,transparent_70%)] blur-[80px] animate-pulse" />
 
       {/* ── Top edge glow beam ── */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-4 w-150 h-px bg-[linear-gradient(90deg,transparent_0%,rgba(168,85,247,0.6)_30%,rgba(216,180,254,0.95)_50%,rgba(168,85,247,0.6)_70%,transparent_100%)] shadow-[0_0_18px_2px_rgba(168,85,247,0.35)]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-4 w-150 h-px bg-[linear-gradient(90deg,transparent_0%,rgba(168,85,247,0.6)_30%,rgba(216,180,254,0.95)_50%,rgba(168,85,247,0.6)_70%,transparent_100%)] " />
 
       {/* Grid overlay */}
       <div
