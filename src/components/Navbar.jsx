@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 const navObj = [
   { name: "Home", to: "/" },
-  { name: "Features", to: "/login" },
-  { name: "Pricing", to: "/about" },
-  { name: "Changelog", to: "/signup" },
-  { name: "Docs", to: "/" },
+  { name: "Features", to: "/" },
+  { name: "Pricing", to: "/" },
+  { name: "Changelog", to: "/changelog" },
+  { name: "Docs", to: "/docs" },
 ];
 
 const navLinkClass =
@@ -30,8 +30,8 @@ const Navbar = () => {
 
       <ul className="list-none ml-35 flex gap-10 items-center text-gray-500">
         {navObj.map((item) => (
-          <li>
-            <Link to={item.to} key={item.name} className={navLinkClass}>
+          <li key={item.name}>
+            <Link to={item.to} className={navLinkClass}>
               {item.name}
             </Link>
           </li>
@@ -42,11 +42,21 @@ const Navbar = () => {
         <div className="themetoggle cursor-pointer">
           <IoIosSunny className="text-2xl hover:text-[#c1bbbb] transition-colors duration-300" />
         </div>
-        <div className="login px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5)]">
-          <Link to={"/login"}>Login</Link>
+        <div className="login transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px ">
+          <Link
+            to={"/login"}
+            className=" px-5 py-3 rounded-xl text-sm font-medium cursor-pointer shadow-[0_0_0_1px_rgba(109,40,217,0.5)]"
+          >
+            Login
+          </Link>
         </div>
-        <div className="singup bg-[#540bc8] px-3 py-2 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5)]">
-          <Link to={"/signup"}>Get Started</Link>
+        <div className="signup transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5)]">
+          <Link
+            to={"/signup"}
+            className="bg-[#540bc8] px-4 py-3 rounded-lg text-sm font-medium cursor-pointer "
+          >
+            Get Started
+          </Link>
         </div>
       </div>
     </nav>

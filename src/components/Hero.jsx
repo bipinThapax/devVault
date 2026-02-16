@@ -1,7 +1,7 @@
 import { IoIosArrowForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
 import { FaRegPlayCircle } from "react-icons/fa";
-import heroDashboard from "../../assets/DevVaultDashboard.png";
+import heroDashboard from "../assets/DevVaultDashboard.png";
 
 const Hero = () => {
   return (

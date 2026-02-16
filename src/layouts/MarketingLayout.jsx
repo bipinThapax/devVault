@@ -1,14 +1,15 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Outlet } from "react-router-dom";
 
-const Signup = () => {
+const MarketingLayout = () => {
   return (
     <>
       <Navbar />
-      <h1 className="text-4xl text-center p-20">Signup</h1>
+      <Outlet />
       <Footer />
     </>
   );
 };
 
-export default Signup;
+export default MarketingLayout;
