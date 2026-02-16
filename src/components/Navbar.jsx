@@ -1,6 +1,10 @@
 import { FaTools } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
+import { MdDarkMode } from "react-icons/md";
+
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../context/context";
 
 const navObj = [
   { name: "Home", to: "/" },
@@ -17,6 +21,7 @@ const navLinkClass =
   "hover:after:duration-500 after:rounded active:after:w-[70%]";
 
 const Navbar = () => {
+  const { isDark, toggleTheme } = useContext(ThemeContext);
   return (
     <nav className="px-10 py-6 z-30 flex flex-wrap justify-between items-center font-semibold box-border bg-[#161515] sticky top-0">
       <div className="logo flex gap-2 items-center">
@@ -39,8 +44,12 @@ const Navbar = () => {
       </ul>
 
       <div className="extra flex justify-center items-center gap-3">
-        <div className="themetoggle cursor-pointer">
-          <IoIosSunny className="text-2xl hover:text-[#c1bbbb] transition-colors duration-300" />
+        <div className="themetoggle cursor-pointer" onClick={toggleTheme}>
+          {isDark ? (
+            <MdDarkMode className="text-2xl hover:text-[#c1bbbb] transition-colors duration-300" />
+          ) : (
+            <IoIosSunny className="text-2xl hover:text-[#c1bbbb] transition-colors duration-300" />
+          )}
         </div>
         <div className="login transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px ">
           <Link
