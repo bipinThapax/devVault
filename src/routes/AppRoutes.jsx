@@ -27,7 +27,6 @@ const AppRoutes = () => {
       {/* Marketing pages  */}
       <Route path="/" element={<MarketingLayout />}>
         <Route index element={<Home />} />
-        <Route path="home" element={<Home />} />
         <Route path="changelog" element={<Changelog />} />
         <Route path="docs" element={<Docs />} />
       </Route>
