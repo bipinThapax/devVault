@@ -46,9 +46,9 @@ const Navbar = () => {
       <div className="extra flex justify-center items-center gap-3">
         <div className="themetoggle cursor-pointer" onClick={toggleTheme}>
           {isDark ? (
-            <MdDarkMode className="text-2xl hover:text-[#c1bbbb] transition-colors duration-300" />
-          ) : (
             <IoIosSunny className="text-2xl hover:text-[#c1bbbb] transition-colors duration-300" />
+          ) : (
+            <MdDarkMode className="text-2xl hover:text-[#c1bbbb] transition-colors duration-300" />
           )}
         </div>
         <div className="login transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px ">

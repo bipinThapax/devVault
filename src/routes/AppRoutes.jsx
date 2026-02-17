@@ -19,6 +19,7 @@ import AddProject from "../pages/dashboard/AddProject";
 import ProjectDetails from "../pages/dashboard/ProjectDetails";
 import Settings from "../pages/dashboard/Settings";
 import Issues from "../pages/dashboard/Issues";
+import ProtectedRoutes from "../routes/ProtectedRoutes";
 
 const AppRoutes = () => {
   return (
@@ -37,14 +38,16 @@ const AppRoutes = () => {
         <Route path="/signup" element={<Signup />} />
       </Route>
 
-      {/* Dashboard pages */}
-      <Route path="/dashboard" element={<DashboardLayout />}>
-        <Route index element={<DashboardHome />} />
-        <Route path="projects" element={<Projects />} />
-        <Route path="projects/new" element={<AddProject />} />
-        <Route path="projects/:projectId" element={<ProjectDetails />} />
-        <Route path="issues" element={<Issues />} />
-        <Route path="settings" element={<Settings />} />
+      <Route element={<ProtectedRoutes />}>
+        {/* Dashboard pages */}
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardHome />} />
+          <Route path="projects" element={<Projects />} />
+          <Route path="projects/new" element={<AddProject />} />
+          <Route path="projects/:projectId" element={<ProjectDetails />} />
+          <Route path="issues" element={<Issues />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
       </Route>
     </Routes>
   );
