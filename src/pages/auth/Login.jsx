@@ -1,15 +1,36 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/context";
 const Login = () => {
-  const { login, logout } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // controlled input, validations
+
+    // fake validations
+    if (email === "" || password === "") {
+      return;
+    } else if (password.length < 5) {
+      setError("Invalid Password");
+    } else if (email.includes("@") && password.length > 5) {
+      setError("");
+      login({ email: email, password: password });
+      setEmail("");
+      setPassword("");
+    }
   };
+
+  const handleKey = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
   return (
     <div className="w-full flex justify-center ">
-      {/* email, password */}
       <form
         onSubmit={handleSubmit}
         className="min-w-[30%] px-6 py-8 border border-purple-300 rounded-2xl flex flex-col gap-6 shadow-gray-100/20 shadow-[0_4px_10px_0]"
@@ -24,6 +45,9 @@ const Login = () => {
             id="email"
             placeholder="Enter your email"
             className="p-2 border border-gray-600 rounded-md outline-none transition-all duration-300 ease-in-out focus:ring-1 focus:ring-purple-500 focus:shadow-purple-100/30 focus:shadow-[0px_0px_10px_0px] "
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={handleKey}
           />
         </div>
         <div className="password flex flex-col gap-2 ">
@@ -33,12 +57,16 @@ const Login = () => {
             id="password"
             placeholder="Enter your password"
             className="p-2 bg-black border border-gray-600 rounded-md outline-none transition-all duration-300 ease-in-out focus:ring-1 focus:ring-purple-500 focus:shadow-purple-100/30 focus:shadow-[0px_0px_10px_0px] "
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={handleKey}
           />
         </div>
+        <div className="errorMsg text-red-500 text-center">{error}</div>
         <div className="submitBtn text-center py-2">
           <button
             type="submit"
-            className=" w-full py-2 bg-purple-800 font-semibold  cursor-pointer rounded-xl hover:bg-purple-900 transition-colors duration-300 ease-in active:scale-95"
+            className=" w-full py-2 bg-purple-800 font-semibold  cursor-pointer rounded-xl hover:bg-purple-900 transition duration-400 ease-in active:scale-95"
           >
             Sign In
           </button>
