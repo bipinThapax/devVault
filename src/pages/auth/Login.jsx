@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/context";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const { login } = useContext(AuthContext);
 
@@ -7,25 +8,23 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // fake validations
     if (email === "" || password === "") {
+      setError("Above fields are required.");
       return;
     } else if (password.length < 5) {
       setError("Invalid Password");
-    } else if (email.includes("@") && password.length > 5) {
+    } else if (email.includes("@") && password.length >= 5) {
       setError("");
-      login({ email: email, password: password });
+      login({ id: Date.now(), email: email });
       setEmail("");
       setPassword("");
-    }
-  };
-
-  const handleKey = (e) => {
-    if (e.key === "Enter") {
-      handleSubmit(e);
+      navigate("/dashboard");
     }
   };
 
@@ -47,7 +46,6 @@ const Login = () => {
             className="p-2 border border-gray-600 rounded-md outline-none transition-all duration-300 ease-in-out focus:ring-1 focus:ring-purple-500 focus:shadow-purple-100/30 focus:shadow-[0px_0px_10px_0px] "
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            onKeyDown={handleKey}
           />
         </div>
         <div className="password flex flex-col gap-2 ">
@@ -59,7 +57,6 @@ const Login = () => {
             className="p-2 bg-black border border-gray-600 rounded-md outline-none transition-all duration-300 ease-in-out focus:ring-1 focus:ring-purple-500 focus:shadow-purple-100/30 focus:shadow-[0px_0px_10px_0px] "
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={handleKey}
           />
         </div>
         <div className="errorMsg text-red-500 text-center">{error}</div>
@@ -70,6 +67,15 @@ const Login = () => {
           >
             Sign In
           </button>
+        </div>
+        <div className="loginMsg text-center">
+          Don't have an account ?{" "}
+          <span
+            className="text-blue-600 underline cursor-pointer"
+            onClick={() => navigate("/signup")}
+          >
+            Sign up
+          </span>
         </div>
       </form>
     </div>
