@@ -19,8 +19,14 @@ const Projects = () => {
           </button>
         </div>
       </div>
-      <div className="projects py-10 text-center">
-        <p className="text-gray-600 text-xl">No projects yet.</p>
+      <div className="projects py-20 text-center">
+        <p className="text-gray-600 text-xl mb-15">No projects yet.</p>
+        <button
+          className="bg-linear-to-r from-[#0975b2]  to-[#5a75d6] py-2 px-3 rounded-lg cursor-pointer  shadow-blue-700/75 shadow-[0px_0px_10px] hover:shadow-[1px_1px_20px] hover:-translate-y-px transition duration-300 ease-in-out active:scale-[97%]"
+          onClick={() => navigate("/dashboard/projects/new")}
+        >
+          Create your first project
+        </button>
       </div>
     </div>
   );
