@@ -25,7 +25,7 @@ const Signup = () => {
       setError("Above fields are required.");
     } else if (password.length < 7 || name.length < 4) {
       setError("Credentials are too short.");
-    } else if (password.trim() !== confirmPassword.trim()) {
+    } else if (password !== confirmPassword) {
       setError("Password doesn't match");
     } else if (email.includes("@")) {
       setError("");
@@ -66,7 +66,6 @@ const Signup = () => {
             type="email"
             id="email"
             placeholder="Enter your email"
-            laceholder="Enter your full name"
             className={inputClass}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -78,7 +77,6 @@ const Signup = () => {
             type="password"
             id="password"
             placeholder="Enter your password"
-            laceholder="Enter your full name"
             className={inputClass}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -90,7 +88,6 @@ const Signup = () => {
             type="password"
             id="rePassword"
             placeholder="Re-Enter your password"
-            laceholder="Enter your full name"
             className={inputClass}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
