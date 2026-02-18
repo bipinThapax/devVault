@@ -55,7 +55,7 @@ const DashboardHome = () => {
           </div>
         </div>
         <div className="projectStatsCard py-10 flex justify-around ">
-          <div className="project-card--total px-10 py-6 border border-[#151515] bg-[##0b0a0aa6] rounded-md flex items-center gap-10">
+          <div className="project-card--total px-10 py-6 border border-[#151515] bg-[#0b0a0aa6] rounded-md flex items-center gap-10">
             <div className="projectCount">
               <div className="text-3xl font-bol">12</div>
               <div className="text-gray-500">Total Projects</div>
@@ -64,7 +64,7 @@ const DashboardHome = () => {
               <FaSquare />
             </div>
           </div>
-          <div className="project-card--completed px-10 py-6 border border-[#151515] bg-[##0b0a0aa6] rounded-md flex items-center gap-10">
+          <div className="project-card--completed px-10 py-6 border border-[#151515] bg-[#0b0a0aa6] rounded-md flex items-center gap-10">
             <div className="projectCount">
               <div className="text-3xl font-bol">7</div>
               <div className="text-gray-500">Completed</div>
@@ -73,7 +73,7 @@ const DashboardHome = () => {
               <FaRegCheckCircle />
             </div>
           </div>
-          <div className=" project-card--in-progress px-10 py-6 border border-[#151515] bg-[##0b0a0aa6] rounded-md flex items-center gap-10">
+          <div className=" project-card--in-progress px-10 py-6 border border-[#151515] bg-[#0b0a0aa6] rounded-md flex items-center gap-10">
             <div className="projectCount">
               <div className="text-3xl font-bol">5</div>
               <div className="text-gray-500">In Progress</div>
