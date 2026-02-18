@@ -1,13 +1,12 @@
 import { Outlet } from "react-router-dom";
-import DashNavbar from "../components/DashNavbar";
+import DashSidebar from "../components/DashSideBar";
 
 const DashboardLayout = () => {
   return (
     <>
       <div className="bg-black min-h-screen flex">
-        {/* side bar hunxa Div ley wrap garera --> [DashboardHOme, AddProject, ProjectDetails, Setting, Issues] */}
-        <DashNavbar />
-        <div className="p-10">
+        <DashSidebar />
+        <div className=" w-full">
           <Outlet />
         </div>
       </div>

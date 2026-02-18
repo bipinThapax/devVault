@@ -1,4 +1,4 @@
-import { FaTools } from "react-icons/fa";
+import { GiIceCube } from "react-icons/gi";
 import { IoIosSunny } from "react-icons/io";
 import { MdDarkMode } from "react-icons/md";
 
@@ -25,8 +25,8 @@ const Navbar = () => {
   return (
     <nav className="px-10 py-6 z-30 flex flex-wrap justify-between items-center font-semibold box-border bg-[#161515] sticky top-0">
       <div className="logo flex gap-2 items-center">
-        <div className="logoImg text-[#1c4ecd]">
-          <FaTools />
+        <div className="logoImg text-[#8f1ccd] text-3xl">
+          <GiIceCube />
         </div>
         <div className="logoText text-2xl font-bold">
           <h1>DevVault</h1>
