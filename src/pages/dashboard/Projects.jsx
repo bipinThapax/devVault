@@ -27,7 +27,7 @@ const Projects = () => {
 
   const { projects } = useContext(ProjectContext);
   return (
-    <div className="projects px-10 py-5 ">
+    <div className="projects px-10 py-5 max-[955px]:px-3">
       <div className="projectHeader  ">
         <div className="projectTitle flex justify-between">
           <h1 className="text-4xl font-extrabold bg-linear-to-br from-blue-800  to-blue-300 bg-clip-text text-transparent">
@@ -43,36 +43,44 @@ const Projects = () => {
         </div>
       </div>
       {projects.length > 0 ? (
-        projects.map((project) => {
-          <div className="projectContainer p-10 flex flex-wrap gap-10 justify-start ">
-            <div
-              className="projectCard max-w-[30%] flex flex-col gap-4 p-4 rounded-2xl shadow-blue-500/60 shadow-[1px_1px_10px]"
-              key={project.pID}
-            >
-              <div className="projectProgress text-gray-500 py-1 text-sm">
-                <span
-                  className={` ${projectStatusMap[project.pStatus]} border  py-1 px-6 rounded-2xl  shadow-[1px_1px_15px]`}
-                >
-                  {projects.pStatus}
-                </span>
+        <div
+          className="projectContainer py-10 px-2 grid  grid-cols-3  gap-y-10 justify-items-center  max-[1395px]:grid-cols-2
+        max-[905px]:grid-cols-1 "
+        >
+          {projects.map((project) => {
+            return (
+              <div
+                className="projectCard w-[320px] min-w-40 max-[905px]:max-w-[90%] flex flex-col justify-around gap-4 p-4 rounded-2xl shadow-white/60 shadow-[1px_1px_4px]"
+                key={project.pID}
+              >
+                <div className="projectProgress text-gray-500 py-1 text-sm">
+                  <span
+                    className={` ${projectStatusMap[project.pStatus]} border  py-1 px-6 rounded-2xl  shadow-[1px_1px_15px]`}
+                  >
+                    {project.pStatus}
+                  </span>
+                </div>
+                <div className="name flex items-center justify-between">
+                  <h2 className="text-2xl font-bold">{project.pName}</h2>
+                  <span className="text-gray-400 text-xs">
+                    {project.pCreatedAt}
+                  </span>
+                </div>
+                <div className="description text-gray-400 text-sm">
+                  {project.pDesc}
+                </div>
+                <div className="links flex justify-between px-2 mt-4 w-full ">
+                  <button className="border border-gray-700 w-[50%] py-2  rounded-md mr-4 cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out">
+                    <FaGithub /> <span>Code</span>
+                  </button>
+                  <button className="border border-gray-700 w-[50%] py-2 rounded-md cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out active:scale-95">
+                    <FaRegShareSquare /> <span>Demo</span>
+                  </button>
+                </div>
               </div>
-              <div className="name flex items-center justify-between">
-                <h2 className="text-2xl font-bold">{project.pName}</h2>
-                <span className="text-gray-400">{project.pCreatedAt}</span>
-              </div>
-              <div className="description text-gray-400">{projects.pDesc}</div>
-              <div className="links flex justify-between px-2 mt-4 w-full ">
-                <button className="border border-gray-700 w-[50%] py-2  rounded-md mr-4 cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out">
-                  <FaGithub /> <span>Code</span>
-                </button>
-                <button className="border border-gray-700 w-[50%] py-2 rounded-md cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out active:scale-95">
-                  <FaRegShareSquare /> <span>Demo</span>
-                </button>
-              </div>
-            </div>
-            ;
-          </div>;
-        })
+            );
+          })}{" "}
+        </div>
       ) : (
         <div className="projects py-20 text-center">
           <p className="text-gray-600 text-xl mb-15">No projects yet.</p>

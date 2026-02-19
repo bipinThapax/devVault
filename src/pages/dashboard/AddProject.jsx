@@ -13,7 +13,7 @@ const AddProject = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    addProject(data);
     navigate("/dashboard/projects");
   };
 

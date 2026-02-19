@@ -7,9 +7,9 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 const DashNavbar = () => {
   const navClasses =
-    "py-2 px-5 flex gap-5 items-center rounded-md border   hover:text-white hover:border-blue-500 hover:shadow-blue-400/30 hover:shadow-[1px_0px_10px_0px] hover:-translate-y-px transition duration-300 ease-in-out";
+    "py-2 px-5 flex gap-5 items-center rounded-md border hover:text-white hover:border-blue-500 hover:shadow-blue-400/30 hover:shadow-[1px_0px_10px_0px] hover:-translate-y-px transition duration-300 ease-in-out max-[1030px]:gap-2";
   return (
-    <div className="w-[20%] py-5 px-4  flex flex-col h-screen gap-15 border-r border-r-gray-600">
+    <div className="w-[20%] min-h-screen z-20 bg-black fixed top-0 py-5 px-4  flex flex-col h-screen gap-15 border-r border-r-gray-600">
       <div className="logo flex gap-4 items-center">
         <div className="logoImg text-[#3a1ccd] text-3xl">
           <GiIceCube />

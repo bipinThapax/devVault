@@ -64,11 +64,7 @@ function App() {
   };
 
   const deleteProject = (pID) => {
-    setProjects(
-      projects.filter((project) => {
-        return project.pID !== pID;
-      }),
-    );
+    setProjects(projects.filter((project) => project.pID !== pID));
   };
 
   useEffect(() => {
