@@ -2,8 +2,10 @@ import { IoIosArrowForward } from "react-icons/io";
 import { FaCircle } from "react-icons/fa";
 import { FaRegPlayCircle } from "react-icons/fa";
 import heroDashboard from "../assets/DevVaultDashboard.png";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative z-10 min-h-fit overflow-hidden bg-[#060608] flex items-center justify-center">
       {/* ── Orb 1 — top center large bloom ── */}
@@ -53,7 +55,10 @@ const Hero = () => {
 
         {/* Buttons */}
         <div className="flex gap-4 mt-4">
-          <button className="bg-linear-to-r from-[#1844f1] to-[#6d28d9] text-white px-6 py-3 rounded-xl text-sm font-medium cursor-pointer transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5),0_4px_24px_rgba(109,40,217,0.35)] hover:shadow-[0_0_0_1px_rgba(168,85,247,0.7),0_8px_32px_rgba(109,40,217,0.55)]">
+          <button
+            className="bg-linear-to-r from-[#1844f1] to-[#6d28d9] text-white px-6 py-3 rounded-xl text-sm font-medium cursor-pointer transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px shadow-[0_0_0_1px_rgba(109,40,217,0.5),0_4px_24px_rgba(109,40,217,0.35)] hover:shadow-[0_0_0_1px_rgba(168,85,247,0.7),0_8px_32px_rgba(109,40,217,0.55)]"
+            onClick={() => navigate("/signup")}
+          >
             Get Started for Free
           </button>
           <button className="flex items-center gap-3 bg-white/4 border border-white/10 text-purple-300 hover:text-purple-100 hover:bg-white/[0.07] hover:border-purple-500/35 px-6 py-3 rounded-xl text-sm font-medium cursor-pointer backdrop-blur-sm transition-all duration-300 ease-out active:scale-95 hover:-translate-y-px">

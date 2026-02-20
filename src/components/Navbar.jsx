@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <nav className="px-10 py-6 z-30 flex flex-wrap justify-between items-center font-semibold box-border bg-[#161515] sticky top-0">
       <div className="logo flex gap-2 items-center">
-        <div className="logoImg text-[#8f1ccd] text-3xl">
+        <div className="logoImg text-[#0a7ce7] text-3xl">
           <GiIceCube />
         </div>
         <div className="logoText text-2xl font-bold">

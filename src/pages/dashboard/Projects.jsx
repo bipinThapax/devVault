@@ -11,12 +11,9 @@ const Projects = () => {
   const navigate = useNavigate();
 
   const projectStatusClasses = {
-    pComplete:
-      "border border-green-600 text-green-300  py-1 px-6 rounded-2xl shadow-green-500/40 shadow-[1px_1px_15px]",
-    pProgress:
-      "border border-amber-600 text-orange-300  py-1 px-6 rounded-2xl shadow-amber-500/40 shadow-[1px_1px_15px]",
-    pPlanning:
-      "border border-cyan-600 text-blue-300 py-1 px-6 rounded-2xl shadow-blue-500/40 shadow-[1px_1px_15px]",
+    pComplete: " border-green-600 text-green-300    shadow-green-500/40 ",
+    pProgress: " border-amber-600 text-orange-300    shadow-amber-500/40 ",
+    pPlanning: " border-cyan-600 text-blue-300   shadow-blue-500/40 ",
   };
 
   const projectStatusMap = {
@@ -50,12 +47,13 @@ const Projects = () => {
           {projects.map((project) => {
             return (
               <div
-                className="projectCard w-[320px] min-w-40 max-[905px]:max-w-[90%] flex flex-col justify-around gap-4 p-4 rounded-2xl shadow-white/60 shadow-[1px_1px_4px]"
+                className="projectCard w-[320px] min-w-40 max-[905px]:max-w-[90%] flex flex-col justify-around gap-4 p-4 rounded-2xl shadow-stone-500/80 shadow-[1px_1px_6px] border border-stone-500/70 cursor-pointer hover:shadow-[1px_1px_18px] transition duration-300 ease-in-out hover:-translate-y-1"
                 key={project.pID}
+                onClick={() => navigate(`/dashboard/projects/${project.pID}`)}
               >
                 <div className="projectProgress text-gray-500 py-1 text-sm">
                   <span
-                    className={` ${projectStatusMap[project.pStatus]} border  py-1 px-6 rounded-2xl  shadow-[1px_1px_15px]`}
+                    className={` ${projectStatusMap[project.pStatus]}    border rounded-full py-2 px-4  shadow-[1px_1px_10px]`}
                   >
                     {project.pStatus}
                   </span>

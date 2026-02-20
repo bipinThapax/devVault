@@ -60,7 +60,7 @@ const DashboardHome = () => {
         <div className="projectStatsCard py-10 flex justify-around ">
           <div className="project-card--total px-10 py-6 border border-[#151515] bg-[#0b0a0aa6] rounded-md flex items-center gap-10">
             <div className="projectCount">
-              <div className="text-3xl font-bol">12</div>
+              <div className="text-3xl font-bol">{projects.length}</div>
               <div className="text-gray-500">Total Projects</div>
             </div>
             <div className="projectCompletedIcon text-2xl p-3 text-purple-500 bg-purple-300/10 rounded-lg">
@@ -97,7 +97,7 @@ const DashboardHome = () => {
               }}
             >{`See all -->`}</h4>
           </div>
-          {/* show some projects here as well */}
+
           <div
             className="recentProjectContainer py-10 px-2 grid  grid-cols-3  gap-y-10 justify-items-center  max-[1395px]:grid-cols-2
         max-[905px]:grid-cols-1 "
@@ -126,7 +126,7 @@ const DashboardHome = () => {
                       {project.pDesc}
                     </div>
                     <div className="links flex justify-between px-2 mt-4 w-full ">
-                      <button className="border border-gray-700 w-[50%] py-2  rounded-md mr-4 cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out">
+                      <button className="border border-gray-700 w-[50%] py-2  rounded-md mr-4 cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out active:scale-95">
                         <FaGithub /> <span>Code</span>
                       </button>
                       <button className="border border-gray-700 w-[50%] py-2 rounded-md cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out active:scale-95">
