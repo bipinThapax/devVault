@@ -14,8 +14,21 @@ import { useNavigate } from "react-router-dom";
 
 const DashboardHome = () => {
   const { user } = useContext(AuthContext);
-  const { projects } = useContext(ProjectContext);
+  const { userProjects } = useContext(ProjectContext);
   const navigate = useNavigate();
+
+  const inProgressCount = userProjects.filter(
+    (project) => project.pStatus === "inProgress",
+  );
+  console.log(inProgressCount);
+
+  const completedCount = userProjects.filter(
+    (project) => project.pStatus === "completed",
+  );
+
+  const planningCount = userProjects.filter(
+    (project) => project.pStatus === "planning",
+  );
   return (
     <div className="dashHome ">
       <div className="dashboardHeader w-full flex items-center justify-between px-10 py-3 border-b border-gray-800">
@@ -60,7 +73,9 @@ const DashboardHome = () => {
         <div className="projectStatsCard py-10 flex justify-around ">
           <div className="project-card--total px-10 py-6 border border-[#151515] bg-[#0b0a0aa6] rounded-md flex items-center gap-10">
             <div className="projectCount">
-              <div className="text-3xl font-bol">{projects.length}</div>
+              <div className="text-3xl font-bol">
+                {userProjects ? userProjects.length : 0}
+              </div>
               <div className="text-gray-500">Total Projects</div>
             </div>
             <div className="projectCompletedIcon text-2xl p-3 text-purple-500 bg-purple-300/10 rounded-lg">
@@ -69,7 +84,7 @@ const DashboardHome = () => {
           </div>
           <div className="project-card--completed px-10 py-6 border border-[#151515] bg-[#0b0a0aa6] rounded-md flex items-center gap-10">
             <div className="projectCount">
-              <div className="text-3xl font-bol">7</div>
+              <div className="text-3xl font-bol">{completedCount.length}</div>
               <div className="text-gray-500">Completed</div>
             </div>
             <div className="projectCompletedIcon text-2xl p-3 text-green-500 bg-green-300/10 rounded-lg ">
@@ -78,10 +93,19 @@ const DashboardHome = () => {
           </div>
           <div className=" project-card--in-progress px-10 py-6 border border-[#151515] bg-[#0b0a0aa6] rounded-md flex items-center gap-10">
             <div className="projectCount">
-              <div className="text-3xl font-bol">5</div>
+              <div className="text-3xl font-bol">{inProgressCount.length}</div>
               <div className="text-gray-500">In Progress</div>
             </div>
             <div className="projectCompletedIcon text-2xl p-3 text-blue-500 bg-blue-300/10 rounded-lg">
+              <TbProgress />
+            </div>
+          </div>
+          <div className=" project-card--planning px-10 py-6 border border-[#151515] bg-[#0b0a0aa6] rounded-md flex items-center gap-10">
+            <div className="projectCount">
+              <div className="text-3xl font-bol">{planningCount.length}</div>
+              <div className="text-gray-500">Plannning</div>
+            </div>
+            <div className="projectCompletedIcon text-2xl p-3 text-green-500 bg-blue-300/10 rounded-lg">
               <TbProgress />
             </div>
           </div>
@@ -102,8 +126,10 @@ const DashboardHome = () => {
             className="recentProjectContainer py-10 px-2 grid  grid-cols-3  gap-y-10 justify-items-center  max-[1395px]:grid-cols-2
         max-[905px]:grid-cols-1 "
           >
-            {projects.length > 0 ? (
-              projects.map((project) => {
+            {userProjects === null ? (
+              ""
+            ) : userProjects.length > 0 ? (
+              userProjects.map((project) => {
                 return (
                   <div
                     className="projectCard w-[320px] min-w-40 max-[905px]:max-w-[90%] flex flex-col justify-around gap-4 p-4 rounded-2xl shadow-white/60 shadow-[1px_1px_4px]"
@@ -137,7 +163,9 @@ const DashboardHome = () => {
                 );
               })
             ) : (
-              <div className="text-gray-500 text-xl">No any projects.</div>
+              <div className="text-gray-500 text-xl text-center">
+                No any projects.
+              </div>
             )}
           </div>
         </div>

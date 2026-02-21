@@ -22,7 +22,7 @@ const Projects = () => {
     planning: projectStatusClasses.pPlanning,
   };
 
-  const { projects } = useContext(ProjectContext);
+  const { userProjects } = useContext(ProjectContext);
   return (
     <div className="projects px-10 py-5 max-[955px]:px-3">
       <div className="projectHeader  ">
@@ -39,12 +39,13 @@ const Projects = () => {
           </button>
         </div>
       </div>
-      {projects.length > 0 ? (
+
+      {userProjects.length > 0 ? (
         <div
           className="projectContainer py-10 px-2 grid  grid-cols-3  gap-y-10 justify-items-center  max-[1395px]:grid-cols-2
         max-[905px]:grid-cols-1 "
         >
-          {projects.map((project) => {
+          {userProjects.map((project) => {
             return (
               <div
                 className="projectCard w-[320px] min-w-40 max-[905px]:max-w-[90%] flex flex-col justify-around gap-4 p-4 rounded-2xl shadow-stone-500/80 shadow-[1px_1px_6px] border border-stone-500/70 cursor-pointer hover:shadow-[1px_1px_18px] transition duration-300 ease-in-out hover:-translate-y-1"

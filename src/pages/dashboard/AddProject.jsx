@@ -17,7 +17,7 @@ const AddProject = () => {
     navigate("/dashboard/projects");
   };
 
-  const { projects, addProject, deleteProject } = useContext(ProjectContext);
+  const { addProject } = useContext(ProjectContext);
   return (
     <form
       className="addProject w-[50%] mx-auto my-10 p-10  flex flex-col gap-5 border border-blue-500 rounded-2xl"

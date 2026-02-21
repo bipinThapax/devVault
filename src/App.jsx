@@ -81,6 +81,7 @@ function App() {
     setProjects([
       ...projects,
       {
+        userID: user.id,
         pID: Date.now(),
         pName: projectData.projectName,
         pDesc: projectData.description,
@@ -89,6 +90,10 @@ function App() {
       },
     ]);
   };
+
+  const userProjects = projects.filter(
+    (project) => project.userID === user?.id,
+  );
 
   const deleteProject = (pID) => {
     setProjects(projects.filter((project) => project.pID !== pID));
@@ -102,7 +107,7 @@ function App() {
     <AuthContext.Provider value={{ user, users, signIn, login, logout }}>
       <ThemeContext.Provider value={{ isDark, toggleTheme }}>
         <ProjectContext.Provider
-          value={{ projects, addProject, deleteProject }}
+          value={{ userProjects, addProject, deleteProject }}
         >
           <div className=" bg-black text-white ">
             <BrowserRouter>
