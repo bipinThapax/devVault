@@ -20,6 +20,7 @@ import ProjectDetails from "../pages/dashboard/ProjectDetails";
 import Settings from "../pages/dashboard/Settings";
 import Issues from "../pages/dashboard/Issues";
 import ProtectedRoutes from "../routes/ProtectedRoutes";
+import NotFound from "../pages/NotFound";
 
 const AppRoutes = () => {
   return (
@@ -48,6 +49,7 @@ const AppRoutes = () => {
           <Route path="settings" element={<Settings />} />
         </Route>
       </Route>
+      <Route path="*" element={<NotFound />}></Route>
     </Routes>
   );
 };

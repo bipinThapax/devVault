@@ -8,7 +8,7 @@ const ProjectDetails = () => {
   const params = useParams();
 
   // search above id and return it to display
-  const { projects } = useContext(ProjectContext);
+  const { projects, deleteProject } = useContext(ProjectContext);
   const filterProject = projects.filter(
     (project) => project.pID === Number(params.projectId),
   );
@@ -46,7 +46,10 @@ const ProjectDetails = () => {
                 <button className="bg-blue-500 p-2 px-6 rounded-2xl cursor-pointer hover:bg-blue-700">
                   Edit
                 </button>
-                <button className="bg-red-500 p-2 px-6 rounded-2xl cursor-pointer hover:bg-red-700">
+                <button
+                  className="bg-red-500 p-2 px-6 rounded-2xl cursor-pointer hover:bg-red-700"
+                  onClick={() => deleteProject(project.pID)}
+                >
                   Delete
                 </button>
               </div>
