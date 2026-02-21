@@ -2,8 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const { login } = useContext(AuthContext);
-
+  const { login, user } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -20,11 +19,19 @@ const Login = () => {
     } else if (password.length < 5) {
       setError("Invalid Password");
     } else if (email.includes("@") && password.length >= 5) {
-      setError("");
-      login({ id: Date.now(), email: email });
-      setEmail("");
-      setPassword("");
-      navigate("/dashboard");
+      const validate = login({
+        email: email,
+        password: password,
+      });
+
+      if (validate) {
+        setEmail("");
+        setPassword("");
+        setError("");
+        navigate("/dashboard");
+      } else {
+        setError("Invalid Credentials");
+      }
     }
   };
 

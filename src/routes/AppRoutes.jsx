@@ -38,6 +38,7 @@ const AppRoutes = () => {
         <Route path="/signup" element={<Signup />} />
       </Route>
 
+      {/* dashboard pages only through authentication  */}
       <Route element={<ProtectedRoutes />}>
         {/* Dashboard pages */}
         <Route path="/dashboard" element={<DashboardLayout />}>
@@ -49,6 +50,8 @@ const AppRoutes = () => {
           <Route path="settings" element={<Settings />} />
         </Route>
       </Route>
+
+      {/* not found page if outside the route path */}
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
   );

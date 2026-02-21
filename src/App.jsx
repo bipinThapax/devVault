@@ -20,17 +20,44 @@ function App() {
   };
 
   // authContext
+
+  //single user
   const [user, setUser] = useState(() => {
     let value = JSON.parse(localStorage.getItem("user"));
     return value ? value : null;
   });
 
-  // user obj attributes : name, email, address, loggedIn:true/fasle, DOB
+  // all users
+  const [users, setUsers] = useState(() => {
+    let value = JSON.parse(localStorage.getItem("users"));
+    return value ? value : [];
+  });
 
-  // saves user data to localStorage
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
+  useEffect(() => {
+    localStorage.setItem("users", JSON.stringify(users));
+  }, [users]);
+
+  // store new user
+  const signIn = (newUser) => {
+    setUser(newUser);
+    setUsers([...users, newUser]);
+  };
+
+  // validate user
   const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
+    // userData has email and pw
+    const findUser = users.find(
+      (u) => u.email === userData.email && u.password === userData.password,
+    );
+    if (findUser) {
+      setUser(findUser);
+      return true;
+    }
+    return false;
   };
 
   // clears user data from localStorage
@@ -72,7 +99,7 @@ function App() {
   }, [projects]);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, users, signIn, login, logout }}>
       <ThemeContext.Provider value={{ isDark, toggleTheme }}>
         <ProjectContext.Provider
           value={{ projects, addProject, deleteProject }}

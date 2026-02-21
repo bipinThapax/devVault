@@ -18,7 +18,7 @@ const NotFound = () => {
       </div>
       <div className=" notFoundMessage  flex flex-col  items-center">
         <h1 className="text-4xl ">
-          404! <span className="text-red-600">Page Not Found</span>
+          404 ! <span className="text-red-600">Page Not Found</span>
         </h1>
         <div className="goBack">
           <button

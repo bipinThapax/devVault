@@ -9,7 +9,7 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { login } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -29,11 +29,11 @@ const Signup = () => {
       setError("Password doesn't match");
     } else if (email.includes("@")) {
       setError("");
-      login({ id: Date.now(), name: name, email: email });
       setName("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
+      signIn({ id: Date.now(), name: name, email: email, password: password });
       navigate("/dashboard");
     }
   };
