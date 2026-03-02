@@ -4,6 +4,13 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
 
+import {
+  getAllProjects,
+  createProject,
+  updateProject,
+  deleteProject as deleteProjectAPI,
+} from "./services/api";
+
 function App() {
   // theme context
   const [isDark, setIsDark] = useState(() => {
@@ -67,41 +74,27 @@ function App() {
   };
 
   // project Context
-  const [projects, setProjects] = useState(() => {
-    let project = JSON.parse(localStorage.getItem("projects"));
-    return project ? project : [];
-  });
-
-  const addProject = (projectData) => {
-    const date = new Date();
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-
-    setProjects([
-      ...projects,
-      {
-        userID: user.id,
-        pID: Date.now(),
-        pName: projectData.projectName,
-        pDesc: projectData.description,
-        pStatus: projectData.projectStatus,
-        pCreatedAt: `${day}/${month}/${year}`,
-      },
-    ]);
-  };
-
-  const userProjects = projects.filter(
-    (project) => project.userID === user?.id,
-  );
-
-  const deleteProject = (pID) => {
-    setProjects(projects.filter((project) => project.pID !== pID));
-  };
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("projects", JSON.stringify(projects));
-  }, [projects]);
+    const fetchProject = async () => {
+      const data = await getAllProjects();
+      setProjects(data);
+    };
+    fetchProject();
+  }, []);
+
+  const addProject = async (projectData) => {
+    const newProject = await createProject(projectData);
+    setProjects([...projects, newProject]);
+  };
+
+  const userProjects = projects;
+
+  const deleteProject = async (pID) => {
+    await deleteProjectAPI(pID);
+    setProjects(projects.filter((project) => project._id !== pID));
+  };
 
   return (
     <AuthContext.Provider value={{ user, users, signIn, login, logout }}>
