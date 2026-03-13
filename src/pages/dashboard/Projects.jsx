@@ -49,24 +49,24 @@ const Projects = () => {
             return (
               <div
                 className="projectCard w-[320px] min-w-40 max-[905px]:max-w-[90%] flex flex-col justify-around gap-4 p-4 rounded-2xl shadow-stone-500/80 shadow-[1px_1px_6px] border border-stone-500/70 cursor-pointer hover:shadow-[1px_1px_18px] transition duration-300 ease-in-out hover:-translate-y-1"
-                key={project.pID}
-                onClick={() => navigate(`/dashboard/projects/${project.pID}`)}
+                key={project._id}
+                onClick={() => navigate(`/dashboard/projects/${project._id}`)}
               >
                 <div className="projectProgress text-gray-500 py-1 text-sm">
                   <span
-                    className={` ${projectStatusMap[project.pStatus]}    border rounded-full py-2 px-4  shadow-[1px_1px_10px]`}
+                    className={` ${projectStatusMap[project.status]}    border rounded-full py-2 px-4  shadow-[1px_1px_10px]`}
                   >
-                    {project.pStatus}
+                    {project.status}
                   </span>
                 </div>
                 <div className="name flex items-center justify-between">
-                  <h2 className="text-2xl font-bold">{project.pName}</h2>
+                  <h2 className="text-2xl font-bold">{project.title}</h2>
                   <span className="text-gray-400 text-xs">
-                    {project.pCreatedAt}
+                    {new Date(project.createdAt).toLocaleDateString()}
                   </span>
                 </div>
                 <div className="description text-gray-400 text-sm">
-                  {project.pDesc}
+                  {project.description}
                 </div>
                 <div className="links flex justify-between px-2 mt-4 w-full ">
                   <button className="border border-gray-700 w-[50%] py-2  rounded-md mr-4 cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out">

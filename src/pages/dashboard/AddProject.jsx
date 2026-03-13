@@ -4,6 +4,7 @@ import { ProjectContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
 
 const AddProject = () => {
+  const { addProject } = useContext(ProjectContext);
   const navigate = useNavigate();
   const {
     register,
@@ -17,7 +18,6 @@ const AddProject = () => {
     navigate("/dashboard/projects");
   };
 
-  const { addProject } = useContext(ProjectContext);
   return (
     <form
       className="addProject w-[50%] mx-auto my-10 p-10  flex flex-col gap-5 border border-blue-500 rounded-2xl"
@@ -27,8 +27,8 @@ const AddProject = () => {
       <div className="projectName flex gap-2 flex-col">
         <label htmlFor="projectName">Project Name</label>
         <input
-          id="projectName"
-          {...register("projectName", { required: true, minLength: 8 })}
+          id="title"
+          {...register("title", { required: true, minLength: 8 })}
           placeholder="Project Name"
           className="px-2 py-2 bg-[#131212] rounded-md outline-none"
         />
@@ -57,8 +57,8 @@ const AddProject = () => {
         <label htmlFor="projectStatus">Project Status</label>
         <select
           name="projectStatus"
-          id="projectStatus"
-          {...register("projectStatus", { required: true })}
+          id="status"
+          {...register("status", { required: true })}
           className="px-2 py-2 bg-[#131212] rounded-md outline-none"
         >
           <option value="">Select status </option>
@@ -68,6 +68,22 @@ const AddProject = () => {
         </select>
         {errors.projectStatus && (
           <span className="text-red-500">Project status is required</span>
+        )}
+      </div>
+      <div className="projectPriority flex gap-2 flex-col">
+        <label htmlFor="priority">Priority</label>
+        <select
+          id="priority"
+          {...register("priority", { required: true })}
+          className="px-2 py-2 bg-[#131212] rounded-md outline-none"
+        >
+          <option value="">Select priority</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        {errors.priority && (
+          <span className="text-red-500">Priority is required</span>
         )}
       </div>
       <div className="submit text-center mt-6">

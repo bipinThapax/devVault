@@ -7,7 +7,6 @@ import AppRoutes from "./routes/AppRoutes";
 import {
   getAllProjects,
   createProject,
-  updateProject,
   deleteProject as deleteProjectAPI,
 } from "./services/api";
 

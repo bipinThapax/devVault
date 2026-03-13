@@ -123,7 +123,7 @@ const DashboardHome = () => {
                 return (
                   <div
                     className="projectCard w-[320px] min-w-40 max-[905px]:max-w-[90%] flex flex-col justify-around gap-4 p-4 rounded-2xl shadow-white/60 shadow-[1px_1px_4px]"
-                    key={project.pID}
+                    key={project._id}
                   >
                     <div className="projectProgress text-gray-500 py-1 text-sm">
                       <span
