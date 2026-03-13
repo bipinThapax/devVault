@@ -20,15 +20,15 @@ const DashboardHome = () => {
   const navigate = useNavigate();
 
   const inProgressCount = userProjects.filter(
-    (project) => project.pStatus === "inProgress",
+    (project) => project.status === "inProgress",
   );
 
   const completedCount = userProjects.filter(
-    (project) => project.pStatus === "completed",
+    (project) => project.status === "completed",
   );
 
   const planningCount = userProjects.filter(
-    (project) => project.pStatus === "planning",
+    (project) => project.status === "planning",
   );
   return (
     <div className="dashHome ">
@@ -129,17 +129,17 @@ const DashboardHome = () => {
                       <span
                         className={`py-1 px-4 rounded-2xl  shadow-[0px_0px_6px]`}
                       >
-                        {project.pStatus}
+                        {project.status}
                       </span>
                     </div>
                     <div className="name flex items-center justify-between">
-                      <h2 className="text-2xl font-bold">{project.pName}</h2>
+                      <h2 className="text-2xl font-bold">{project.title}</h2>
                       <span className="text-gray-400 text-xs">
-                        {project.pCreatedAt}
+                        {new Date(project.createdAt).toLocaleDateString()}
                       </span>
                     </div>
                     <div className="description text-gray-400 text-sm">
-                      {project.pDesc}
+                      {project.description}
                     </div>
                     <div className="links flex justify-between px-2 mt-4 w-full ">
                       <button className="border border-gray-700 w-[50%] py-2  rounded-md mr-4 cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out active:scale-95">
