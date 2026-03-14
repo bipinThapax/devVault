@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/projects";
+const API_URL = "https://devvault-backend-6vdp.onrender.com/api/projects";
 
 export const getAllProjects = async () => {
     const response = await fetch(API_URL);
