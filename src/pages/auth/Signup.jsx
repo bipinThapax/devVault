@@ -13,9 +13,10 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // frontend validations
     if (
       name === "" ||
       email === "" ||
@@ -28,12 +29,13 @@ const Signup = () => {
     } else if (password !== confirmPassword) {
       setError("Password doesn't match");
     } else if (email.includes("@")) {
+      await signIn({ name: name, email: email, password: password });
       setError("");
       setName("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
-      signIn({ id: Date.now(), name: name, email: email, password: password });
+
       navigate("/dashboard");
     }
   };

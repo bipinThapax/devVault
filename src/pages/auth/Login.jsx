@@ -2,24 +2,23 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const { login, user } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // fake validations
     if (email === "" || password === "") {
       setError("Above fields are required.");
       return;
     } else if (password.length < 5) {
       setError("Invalid Password");
     } else if (email.includes("@") && password.length >= 5) {
-      const validate = login({
+      const validate = await login({
         email: email,
         password: password,
       });
