@@ -1,4 +1,4 @@
-const API_URI = 'https://devevault-backend-6vdp.onrender.com/api/auth';
+const API_URI = 'https://devvault-backend-6vdp.onrender.com/api/auth';
 
 export const registerUser = async (userData) => {
     const response = await fetch(`${API_URI}/register`, {
@@ -12,7 +12,7 @@ export const registerUser = async (userData) => {
 export const loginUser = async (credentials) => {
     const response = await fetch(`${API_URI}/login`, {
         method: 'POST',
-        headers: { 'Content-Type': "application.json" },
+        headers: { 'Content-Type': "application/json" },
         body: JSON.stringify(credentials)
     })
 

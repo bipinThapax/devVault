@@ -10,6 +10,11 @@ import {
   deleteProject as deleteProjectAPI,
 } from "./services/api";
 
+import {
+  registerUser as registerAPI,
+  loginUser as loginAPI,
+} from "./services/auth";
+
 function App() {
   // theme context
   const [isDark, setIsDark] = useState(() => {
@@ -27,49 +32,45 @@ function App() {
 
   // authContext
 
-  //single user
   const [user, setUser] = useState(() => {
-    let value = JSON.parse(localStorage.getItem("user"));
-    return value ? value : null;
+    let value = localStorage.getItem("user");
+    return value ? JSON.parse(value) : null;
   });
-
-  // all users
-  const [users, setUsers] = useState(() => {
-    let value = JSON.parse(localStorage.getItem("users"));
-    return value ? value : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
-
-  useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(users));
-  }, [users]);
-
-  // store new user
-  const signIn = (newUser) => {
-    setUser(newUser);
-    setUsers([...users, newUser]);
+  const signIn = async (userData) => {
+    try {
+      const data = await registerAPI(userData);
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data));
+        setUser(data);
+      }
+    } catch (error) {
+      console.error("Resgistration Failed", error);
+    }
   };
 
   // validate user
-  const login = (userData) => {
-    // userData has email and pw
-    const findUser = users.find(
-      (u) => u.email === userData.email && u.password === userData.password,
-    );
-    if (findUser) {
-      setUser(findUser);
-      return true;
+  const login = async (credentials) => {
+    try {
+      const data = await loginAPI(credentials);
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data));
+        setUser(data);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Login Failed:", error);
+      return false;
     }
-    return false;
   };
 
   // clears user data from localStorage
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
   };
 
   // project Context
@@ -96,7 +97,7 @@ function App() {
   };
 
   return (
-    <AuthContext.Provider value={{ user, users, signIn, login, logout }}>
+    <AuthContext.Provider value={{ user, signIn, login, logout }}>
       <ThemeContext.Provider value={{ isDark, toggleTheme }}>
         <ProjectContext.Provider
           value={{ userProjects, addProject, deleteProject }}
