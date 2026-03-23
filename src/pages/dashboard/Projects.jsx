@@ -22,7 +22,7 @@ const Projects = () => {
     planning: projectStatusClasses.pPlanning,
   };
 
-  const { userProjects } = useContext(ProjectContext);
+  const { userProjects, loadingProject } = useContext(ProjectContext);
   return (
     <div className="projects px-10 py-5 max-[955px]:px-3">
       <div className="projectHeader  ">
@@ -40,7 +40,11 @@ const Projects = () => {
         </div>
       </div>
 
-      {userProjects.length > 0 ? (
+      {loadingProject ? (
+        <div className="py-20 flex justify-center">
+          <div className="loader"></div>
+        </div>
+      ) : userProjects.length > 0 ? (
         <div
           className="projectContainer py-10 px-2 grid  grid-cols-3  gap-y-10 justify-items-center  max-[1395px]:grid-cols-2
         max-[905px]:grid-cols-1 "

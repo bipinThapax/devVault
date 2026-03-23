@@ -83,7 +83,9 @@ function App() {
       setLoadingProject(true);
       try {
         const data = await getAllProjects();
-        setProjects(data);
+        if (Array.isArray(data)) {
+          setProjects(data);
+        }
       } catch (error) {
         console.error("Failed to fetch projects", error);
       } finally {

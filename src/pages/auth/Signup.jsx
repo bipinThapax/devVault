@@ -28,8 +28,10 @@ const Signup = () => {
       setLoading(false);
     } else if (password.length < 7 || name.length < 4) {
       setError("Credentials are too short.");
+      setLoading(false);
     } else if (password !== confirmPassword) {
       setError("Password doesn't match");
+      setLoading(false);
     } else if (email.includes("@")) {
       await signIn({ name: name, email: email, password: password });
       setError("");
@@ -101,7 +103,7 @@ const Signup = () => {
         <div className="submitBtn text-center py-2">
           <button
             type="submit"
-            disables={loading}
+            disabled={loading}
             className=" w-full py-2 bg-purple-800 font-semibold  cursor-pointer rounded-xl hover:bg-purple-900 transition duration-400 ease-in active:scale-95"
           >
             {loading ? <div className="loader"></div> : "Sign Up"}
