@@ -6,30 +6,35 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (email === "" || password === "") {
       setError("Above fields are required.");
+      setLoading(false);
       return;
     } else if (password.length < 5) {
       setError("Invalid Password");
     } else if (email.includes("@") && password.length >= 5) {
-      const validate = await login({
-        email: email,
-        password: password,
-      });
-
-      if (validate) {
-        setEmail("");
-        setPassword("");
-        setError("");
-        navigate("/dashboard");
-      } else {
-        setError("Invalid Credentials");
+      try {
+        const validate = await login({ email, password });
+        if (validate) {
+          setEmail("");
+          setPassword("");
+          setError("");
+          navigate("/dashboard");
+        } else {
+          setError("Invalid Credentials");
+        }
+      } catch (error) {
+        setError("Login Failed");
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -69,9 +74,10 @@ const Login = () => {
         <div className="submitBtn text-center py-2">
           <button
             type="submit"
+            disabled={loading}
             className=" w-full py-2 bg-purple-800 font-semibold  cursor-pointer rounded-xl hover:bg-purple-900 transition duration-400 ease-in active:scale-95"
           >
-            Sign In
+            {loading ? <div className="loader"></div> : "Sign In"}
           </button>
         </div>
         <div className="loginMsg text-center">

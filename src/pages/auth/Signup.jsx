@@ -8,6 +8,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { signIn } = useContext(AuthContext);
 
@@ -15,7 +16,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     // frontend validations
     if (
       name === "" ||
@@ -24,6 +25,7 @@ const Signup = () => {
       confirmPassword === ""
     ) {
       setError("Above fields are required.");
+      setLoading(false);
     } else if (password.length < 7 || name.length < 4) {
       setError("Credentials are too short.");
     } else if (password !== confirmPassword) {
@@ -35,7 +37,7 @@ const Signup = () => {
       setEmail("");
       setPassword("");
       setConfirmPassword("");
-
+      setLoading(false);
       navigate("/dashboard");
     }
   };
@@ -99,9 +101,10 @@ const Signup = () => {
         <div className="submitBtn text-center py-2">
           <button
             type="submit"
+            disables={loading}
             className=" w-full py-2 bg-purple-800 font-semibold  cursor-pointer rounded-xl hover:bg-purple-900 transition duration-400 ease-in active:scale-95"
           >
-            Sign Up
+            {loading ? <div className="loader"></div> : "Sign Up"}
           </button>
         </div>
         <div className="loginMsg text-center">

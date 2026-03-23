@@ -16,7 +16,7 @@ import DashStatusCard from "../../components/DashStatusCard";
 
 const DashboardHome = () => {
   const { user } = useContext(AuthContext);
-  const { userProjects } = useContext(ProjectContext);
+  const { userProjects, loadingProject } = useContext(ProjectContext);
   const navigate = useNavigate();
 
   const inProgressCount = userProjects.filter(
@@ -112,52 +112,56 @@ const DashboardHome = () => {
             >{`See all -->`}</h4>
           </div>
 
-          <div
-            className="recentProjectContainer py-10 px-2 grid  grid-cols-3  gap-y-10 justify-items-center  max-[1395px]:grid-cols-2
-        max-[620px]:grid-cols-1 "
-          >
-            {userProjects === null ? (
-              ""
-            ) : userProjects.length > 0 ? (
-              userProjects.map((project) => {
-                return (
-                  <div
-                    className="projectCard w-[320px] min-w-40 max-[905px]:max-w-[90%] flex flex-col justify-around gap-4 p-4 rounded-2xl shadow-white/60 shadow-[1px_1px_4px]"
-                    key={project._id}
-                  >
-                    <div className="projectProgress text-gray-500 py-1 text-sm">
-                      <span
-                        className={`py-1 px-4 rounded-2xl  shadow-[0px_0px_6px]`}
-                      >
-                        {project.status}
-                      </span>
+          {loadingProject ? (
+            <div className="loader"></div>
+          ) : (
+            <div
+              className="recentProjectContainer py-10 px-2 grid  grid-cols-3  gap-y-10 justify-items-center  max-[1395px]:grid-cols-2
+            max-[620px]:grid-cols-1 "
+            >
+              {userProjects === null ? (
+                ""
+              ) : userProjects.length > 0 ? (
+                userProjects.map((project) => {
+                  return (
+                    <div
+                      className="projectCard w-[320px] min-w-40 max-[905px]:max-w-[90%] flex flex-col justify-around gap-4 p-4 rounded-2xl shadow-white/60 shadow-[1px_1px_4px]"
+                      key={project._id}
+                    >
+                      <div className="projectProgress text-gray-500 py-1 text-sm">
+                        <span
+                          className={`py-1 px-4 rounded-2xl  shadow-[0px_0px_6px]`}
+                        >
+                          {project.status}
+                        </span>
+                      </div>
+                      <div className="name flex items-center justify-between">
+                        <h2 className="text-2xl font-bold">{project.title}</h2>
+                        <span className="text-gray-400 text-xs">
+                          {new Date(project.createdAt).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <div className="description text-gray-400 text-sm">
+                        {project.description}
+                      </div>
+                      <div className="links flex justify-between px-2 mt-4 w-full ">
+                        <button className="border border-gray-700 w-[50%] py-2  rounded-md mr-4 cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out active:scale-95">
+                          <FaGithub /> <span>Code</span>
+                        </button>
+                        <button className="border border-gray-700 w-[50%] py-2 rounded-md cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out active:scale-95">
+                          <FaRegShareSquare /> <span>Demo</span>
+                        </button>
+                      </div>
                     </div>
-                    <div className="name flex items-center justify-between">
-                      <h2 className="text-2xl font-bold">{project.title}</h2>
-                      <span className="text-gray-400 text-xs">
-                        {new Date(project.createdAt).toLocaleDateString()}
-                      </span>
-                    </div>
-                    <div className="description text-gray-400 text-sm">
-                      {project.description}
-                    </div>
-                    <div className="links flex justify-between px-2 mt-4 w-full ">
-                      <button className="border border-gray-700 w-[50%] py-2  rounded-md mr-4 cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out active:scale-95">
-                        <FaGithub /> <span>Code</span>
-                      </button>
-                      <button className="border border-gray-700 w-[50%] py-2 rounded-md cursor-pointer flex gap-4 items-center justify-center hover:shadow-white/15 hover:shadow-[1px_1px_10px] hover:-translate-y-px transition duration-300 ease-in-out active:scale-95">
-                        <FaRegShareSquare /> <span>Demo</span>
-                      </button>
-                    </div>
-                  </div>
-                );
-              })
-            ) : (
-              <div className="text-gray-500 text-xl text-center">
-                No any projects.
-              </div>
-            )}
-          </div>
+                  );
+                })
+              ) : (
+                <div className="text-gray-500 text-xl text-center">
+                  No any projects.
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

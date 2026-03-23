@@ -75,14 +75,23 @@ function App() {
 
   // project Context
   const [projects, setProjects] = useState([]);
+  const [loadingProject, setLoadingProject] = useState(false);
 
   useEffect(() => {
     const fetchProject = async () => {
-      const data = await getAllProjects();
-      setProjects(data);
+      if (!user) return;
+      setLoadingProject(true);
+      try {
+        const data = await getAllProjects();
+        setProjects(data);
+      } catch (error) {
+        console.error("Failed to fetch projects", error);
+      } finally {
+        setLoadingProject(false);
+      }
     };
     fetchProject();
-  }, []);
+  }, [user]);
 
   const addProject = async (projectData) => {
     const newProject = await createProject(projectData);
@@ -100,7 +109,7 @@ function App() {
     <AuthContext.Provider value={{ user, signIn, login, logout }}>
       <ThemeContext.Provider value={{ isDark, toggleTheme }}>
         <ProjectContext.Provider
-          value={{ userProjects, addProject, deleteProject }}
+          value={{ userProjects, addProject, deleteProject, loadingProject }}
         >
           <div className=" bg-black text-white ">
             <BrowserRouter>
